@@ -3,7 +3,7 @@
 ## Project setup
 
 ```
-nvm use 19
+nvm use 18
 yarn install
 yarn dev
 ```
@@ -16,8 +16,8 @@ yarn build
 
 ### Localhost
 
-go to http://localhost:5173/
+Go to: http://localhost:5173/
 
 ## Data
 
-use example_data or example_data_big
+Use 'example_data' or 'example_data_big' file.
