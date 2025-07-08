@@ -1,11 +1,10 @@
-import { onMounted, reactive, toRef } from "vue";
+import { onMounted, ref, toRef } from "vue";
 
 export function useExampleData<T extends Record<string, any>>() {
-  const data = reactive<{ value: null | T[] }>({
-    value: null,
-  });
+const data = ref<T[] | null>(null);
 
   onMounted(() => {
+    // fetch("http://localhost:5173/example_data_big.csv")
     fetch("http://localhost:5173/example_data.csv")
       .then((r) => r.text())
       .then((r) => (data.value = csvToArray<T>(r)));
@@ -58,5 +57,11 @@ function csvToArray<T extends Record<string, any>>(input: string) {
 
 // TODO: implement exporting to XML
 export function toXml(input: Record<string, any>[]) {
-  return input.reduce((acc, curr) => `${acc}\n${JSON.stringify(curr)}`, "");
+  const xml = input.reduce((acc, curr) => {
+    const itemXml = Object.keys(curr).reduce((itemAcc, key) => {
+      return `${itemAcc}\n  <${key}>${curr[key]}</${key}>`;
+    }, '');
+    return `${acc}\n<item>${itemXml}\n</item>`;
+  }, '');
+  return `<root>\n${xml}\n</root>`;
 }

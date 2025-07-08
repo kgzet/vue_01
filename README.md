@@ -1,24 +1,23 @@
 # vue_01
 
 ## Project setup
-```
-yarn install
-```
 
-### Compiles and hot-reloads for development
 ```
-yarn serve
+nvm use 19
+yarn install
+yarn dev
 ```
 
 ### Compiles and minifies for production
+
 ```
 yarn build
 ```
 
-### Lints and fixes files
-```
-yarn lint
-```
+### Localhost
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+go to http://localhost:5173/
+
+## Data
+
+use example_data or example_data_big
